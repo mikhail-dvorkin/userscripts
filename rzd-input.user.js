@@ -66,15 +66,10 @@ function useData() {
 		document.getElementsByName("lastName")[i].value = ss[2];
 		document.getElementsByName("firstName")[i].value = ss[3];
 		document.getElementsByName("midName")[i].value = ss[4];
-		document.getElementsByName("tariff")[i].value = "Adult";
 		document.getElementsByName("docType")[i].value = dt;
 		document.getElementsByName("docNumber")[i].value = dn;
 		document.getElementsByName("gender")[i].value = gen;
 		document.getElementsByName("birthdate")[i].value = bd;
-		//document.getElementsByName("birthplace")[i].value = ss[6];
-		//document.getElementsByName("loyalNum")[i].value = ss[7];
-		//TODO parse ss[6] to get loyalty number
-		//document.getElementsByName("insCheck")[i].checked = false;
     }
 }
 
