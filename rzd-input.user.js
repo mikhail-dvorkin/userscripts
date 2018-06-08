@@ -45,7 +45,7 @@ function useData() {
 		var s = lines[i];
 		if (!/(\S+\s+){3,3}/.test(s)) {continue;}
 		//var re = /^(....[\d\s]+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d\d?\.\d\d?\.\d\d\d\d)\s+([^\d\/]+)(\d*)(\s*|\s*\/\/.*)$/;
-		var re = /^\s*(\S.+\S)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d\d?\.\d\d?\.\d\d\d\d)\s*(|\S.*)$/;
+		var re = /^\s*(\S.+\S)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d\d?[-./]\d\d?[-./]\d\d\d\d|\d\d\d\d[-./]\d\d?[-./]\d\d?)\s*(|\S.*)$/;
 		var ss = re.exec(s);
 		var dn = ss[1];
 		var dt; if (/^(\d\s*){10,10}$/.test(dn)) {dt = 1;} else if (/^(\d\s*){9,9}$/.test(dn)) {dt = 3;} else {dt = 6;}
