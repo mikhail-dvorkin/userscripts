@@ -4,7 +4,7 @@
 // @author        Mikhail Dvorkin, mikhail.dvorkin@gmail.com
 // @namespace     http://dvorkin.me/
 // @website       http://dvorkin.me/
-// @version       1.0.6
+// @version       1.0.7
 // @include       http://pass.rzd.ru/*
 // @include       http://www.pass.rzd.ru/*
 // @include       https://pass.rzd.ru/*
