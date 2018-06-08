@@ -4,7 +4,7 @@
 // @author        Mikhail Dvorkin, mikhail.dvorkin@gmail.com
 // @namespace     http://dvorkin.me/
 // @website       http://dvorkin.me/
-// @version       1.0.3
+// @version       1.0.6
 // @include       http://pass.rzd.ru/*
 // @include       http://www.pass.rzd.ru/*
 // @include       https://pass.rzd.ru/*
@@ -59,10 +59,17 @@ function useData() {
 			gen = "2";
 			alert("Unusual middle name: " + mid + ". Set gender manually!");
 		}
-		var bd = /(\d\d?)\.(\d\d?)\.(\d\d\d\d)/.exec(ss[5]);
-		if (bd[1].length < 2) bd[1] = "0" + bd[1];
-		if (bd[2].length < 2) bd[2] = "0" + bd[2];
-		bd = bd[1] + "." + bd[2] + "." + bd[3];
+		var bd = /(\d\d?)[-./](\d\d?)[-./](\d\d\d\d)/.exec(ss[5]);
+		if (bd != null) {
+			if (bd[1].length < 2) bd[1] = "0" + bd[1];
+			if (bd[2].length < 2) bd[2] = "0" + bd[2];
+			bd = bd[1] + "." + bd[2] + "." + bd[3];
+		} else {
+			var bd = /(\d\d\d\d)[-./](\d\d?)[-./](\d\d?)/.exec(ss[5]);
+			if (bd[3].length < 2) bd[3] = "0" + bd[3];
+			if (bd[2].length < 2) bd[2] = "0" + bd[2];
+			bd = bd[3] + "." + bd[2] + "." + bd[1];
+		}	
 		document.getElementsByName("lastName")[i].value = ss[2];
 		document.getElementsByName("firstName")[i].value = ss[3];
 		document.getElementsByName("midName")[i].value = ss[4];
