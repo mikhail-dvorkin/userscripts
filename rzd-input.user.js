@@ -28,11 +28,16 @@ var input = document.createElement("input");
 input.type = "button";
 input.value = "Применить";
 input.onclick = useData;
+var testButton = document.createElement("input");
+testButton.type = "button";
+testButton.value = "Пример";
+testButton.onclick = doTest;
 //var parent = document.getElementById("TrainsList");
 var parent = document.getElementsByClassName("crumbs-and-nav-row")[0];
 parent.appendChild(area);
 parent.appendChild(document.createElement("br"));
 parent.appendChild(input);
+parent.appendChild(testButton);
 
 function useData() {
 	var lines = area.value.split("\n");
@@ -71,4 +76,10 @@ function useData() {
 		//TODO parse ss[6] to get loyalty number
 		//document.getElementsByName("insCheck")[i].checked = false;
     }
+}
+
+function doTest() {
+	s = "1234567891	Иванов Иван Иванович	08.09.1999\n";
+	area.value = s + s + s + s;
+	useData();
 }
