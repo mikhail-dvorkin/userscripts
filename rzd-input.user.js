@@ -4,11 +4,9 @@
 // @author        Mikhail Dvorkin, mikhail.dvorkin@gmail.com
 // @namespace     http://dvorkin.me/
 // @website       http://dvorkin.me/
-// @version       1.0.7
-// @include       http://pass.rzd.ru/*
-// @include       http://www.pass.rzd.ru/*
-// @include       https://pass.rzd.ru/*
-// @include       https://www.pass.rzd.ru/*
+// @version       1.0.8
+// @include       *://pass.rzd.ru/*
+// @include       *://www.pass.rzd.ru/*
 // ==/UserScript==
 
 /*
@@ -21,6 +19,7 @@ I-АК 123456	Пушкин Потомок Потомкович	2017-12-31
 12 3456789	d'Anthès Georges-Charles - 5.2.1812
 */
 
+console.log("RZD input data form, v1.0.8");
 var area = document.createElement("textarea");
 area.cols = 100;
 area.rows = 5;
