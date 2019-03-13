@@ -70,13 +70,25 @@ function useData() {
 			bd = bd[3] + "." + bd[2] + "." + bd[1];
 		}	
 		document.getElementsByName("lastName")[i].value = ss[2];
+		document.getElementsByName("lastName")[i].click();
 		document.getElementsByName("firstName")[i].value = ss[3];
+		document.getElementsByName("firstName")[i].click();
 		document.getElementsByName("midName")[i].value = ss[4];
-		document.getElementsByName("docType")[i].value = dt;
+		document.getElementsByName("midName")[i].click();
 		document.getElementsByName("docNumber")[i].value = dn;
-		document.getElementsByName("gender")[i].value = gen;
-		document.getElementsByName("birthdate")[i].value = bd;
-    }
+		document.getElementsByName("docNumber")[i].click();
+		document.querySelectorAll("select[testid=gender]")[i].value = gen;
+		document.querySelectorAll("select[testid=gender]")[i].click();
+		document.querySelectorAll("input[testid=birthdate]")[i].value = bd;
+		document.querySelectorAll("input[testid=birthdate]")[i].click();
+		document.querySelectorAll("select[testid=docType]")[i].value = dt;
+		document.querySelectorAll("select[testid=docType]")[i].click();
+		document.querySelectorAll("input[testid=ns-chbox]")[i].checked = true;
+		document.querySelectorAll("input[testid=ns-chbox]")[i].click();
+		document.querySelectorAll("input[testid=dms-chbox]")[i].checked = true;
+		document.querySelectorAll("input[testid=dms-chbox]")[i].click();
+	}
+	document.querySelector("input[testid=gdpr3]").checked = true;
 }
 
 function doTest() {
