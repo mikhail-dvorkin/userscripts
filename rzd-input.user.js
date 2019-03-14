@@ -9,33 +9,39 @@
 // @include       *://www.pass.rzd.ru/*
 // ==/UserScript==
 
-/*
-В появившуются область надо вставить данные в формате:
-номер_документа фамилия имя отчество_или_дефис дата_рождения что_угодно
-
-4010567890	Пушкин Александр Сергеевич	06.06.1999	Москва	9009990999999
-4010567891	Гончарова Наталья Николаевна	08.09.2002	// жена
-I-АК 123456	Пушкин Григорий Александрович	2015-05-24 9009990999998
-12 3456789	dAnthes Georges-Charles - 5.2.2002
-*/
+manual = "В эту область надо вставить данные в формате:\n" +
+"Номер_документа Фамилия Имя Отчество_или_дефис Дата_рождения [Ржд_бонус]\n\n" +
+"Нажмите «Применить», кликните мышкой на каждое оранжевое поле,\n" +
+"если оно текстовое — удалите бекспейсом символ «$»,\n" +
+"иначе выберите вариант, подсказанный крупным шрифтом.";
+sample =
+"4010567890	Пушкин Александр Сергеевич	06.06.1999	Москва	9009990999999\n" +
+"4010567891	Гончарова Наталья Николаевна	08.09.2002	// жена\n" +
+"I-АК 123456	Пушкин Григорий Александрович	2015-05-24 9009990999998\n" +
+"12 3456789	dAnthes Georges-Charles - 5.2.2002";
 
 console.log("RZD input data form, v1.1.0");
 var area = document.createElement("textarea");
 area.cols = 100;
-area.rows = 5;
+area.rows = 6;
 var input = document.createElement("input");
 input.type = "button";
 input.value = "Применить";
 input.onclick = useData;
-var testButton = document.createElement("input");
-testButton.type = "button";
-testButton.value = "Пример";
-testButton.onclick = doTest;
+var sampleButton = document.createElement("input");
+sampleButton.type = "button";
+sampleButton.value = "Пример";
+sampleButton.onclick = function() { area.value = sample; };
+var manualButton = document.createElement("input");
+manualButton.type = "button";
+manualButton.value = "Инструкция";
+manualButton.onclick = function() { area.value = manual; };
 var parent = document.getElementsByClassName("crumbs-and-nav-row")[0];
 parent.appendChild(area);
 parent.appendChild(document.createElement("br"));
 parent.appendChild(input);
-parent.appendChild(testButton);
+parent.appendChild(sampleButton);
+parent.appendChild(manualButton);
 
 function useData() {
 	var lines = area.value.split("\n");
@@ -113,9 +119,4 @@ function rzdSet(elem, newValue) {
 	}
 }
 
-function doTest() {
-	s = "4007456789	Иванов Иван Иванович	18.09.1999\n";
-	area.value = s + s;
-	useData();
-}
 
