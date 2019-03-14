@@ -4,7 +4,7 @@
 // @author        Mikhail Dvorkin, mikhail.dvorkin@gmail.com
 // @namespace     http://dvorkin.me/
 // @website       http://dvorkin.me/
-// @version       1.1.1
+// @version       1.1.2
 // @include       *://pass.rzd.ru/*
 // @include       *://www.pass.rzd.ru/*
 // ==/UserScript==
@@ -20,7 +20,7 @@ sample =
 "I-АК 123456	Пушкин Григорий Александрович	2015-05-24 9009990999998\n" +
 "12 3456789	dAnthes Georges-Charles - 5.2.2002";
 
-console.log("RZD input data form, v1.1.1");
+console.log("RZD input data form, v1.1.2");
 var parent = document.querySelector("form.passData");
 var panel = document.createElement("div");
 parent.prepend(panel);
