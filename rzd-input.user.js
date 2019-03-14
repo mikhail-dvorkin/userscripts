@@ -4,13 +4,13 @@
 // @author        Mikhail Dvorkin, mikhail.dvorkin@gmail.com
 // @namespace     http://dvorkin.me/
 // @website       http://dvorkin.me/
-// @version       1.1.0
+// @version       1.1.1
 // @include       *://pass.rzd.ru/*
 // @include       *://www.pass.rzd.ru/*
 // ==/UserScript==
 
 manual = "В эту область надо вставить данные в формате:\n" +
-"Номер_документа Фамилия Имя Отчество_или_дефис Дата_рождения [Ржд_бонус]\n\n" +
+"\tНомер_документа Фамилия Имя Отчество_или_дефис Дата_рождения [Ржд_бонус]\n" +
 "Нажмите «Применить», кликните мышкой на каждое оранжевое поле,\n" +
 "если оно текстовое — удалите бекспейсом символ «$»,\n" +
 "иначе выберите вариант, подсказанный крупным шрифтом.";
@@ -20,10 +20,10 @@ sample =
 "I-АК 123456	Пушкин Григорий Александрович	2015-05-24 9009990999998\n" +
 "12 3456789	dAnthes Georges-Charles - 5.2.2002";
 
-console.log("RZD input data form, v1.1.0");
+console.log("RZD input data form, v1.1.1");
 var area = document.createElement("textarea");
 area.cols = 100;
-area.rows = 6;
+area.rows = 5;
 var input = document.createElement("input");
 input.type = "button";
 input.value = "Применить";
