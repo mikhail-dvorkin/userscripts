@@ -21,6 +21,9 @@ sample =
 "12 3456789	dAnthes Georges-Charles - 5.2.2002";
 
 console.log("RZD input data form, v1.1.1");
+var parent = document.querySelector("form.passData");
+var panel = document.createElement("div");
+parent.prepend(panel);
 var area = document.createElement("textarea");
 area.cols = 100;
 area.rows = 5;
@@ -36,15 +39,15 @@ var manualButton = document.createElement("input");
 manualButton.type = "button";
 manualButton.value = "Инструкция";
 manualButton.onclick = function() { area.value = manual; };
-var parent = document.getElementsByClassName("crumbs-and-nav-row")[0];
-parent.appendChild(area);
-parent.appendChild(document.createElement("br"));
-parent.appendChild(input);
-parent.appendChild(sampleButton);
-parent.appendChild(manualButton);
+panel.appendChild(area);
+panel.appendChild(document.createElement("br"));
+panel.appendChild(input);
+panel.appendChild(sampleButton);
+panel.appendChild(manualButton);
 
 function useData() {
 	var lines = area.value.split("\n");
+	var toAdd = 0;
 	for (i = 0; i < 4; i++) {
 		var s = lines[i];
 		if (!/(\S+\s+){3,3}/.test(s)) {continue;}
@@ -72,11 +75,8 @@ function useData() {
 			bonus = bonus[0];
 		}
 		if (!document.getElementsByName("lastName")[i]) {
-			document.querySelector("button[testid=passAdd] span span").click();
-		}
-		if (!document.getElementsByName("lastName")[i]) {
-			alert("Пришлось добавить пассажира. Нажмите ещё раз.");
-			return;
+			toAdd++;
+			continue;
 		}
 		rzdSet(document.getElementsByName("lastName")[i], ss[2]);
 		rzdSet(document.getElementsByName("firstName")[i], ss[3]);
@@ -95,6 +95,13 @@ function useData() {
 			bonusField = bonusCheckbox.parentNode.parentNode.querySelector("input[name=cardRZDBonus]");
 			rzdSet(bonusField, bonus);
 		}
+	}
+	if (toAdd > 0) {
+		while (toAdd-- > 0) {
+			document.querySelector("button[testid=passAdd] span span").click();
+		}
+		setTimeout(useData, 300);
+		return;
 	}
 	rzdSet(document.querySelector("input[testid=gdpr3]"), true);
 }
@@ -118,5 +125,4 @@ function rzdSet(elem, newValue) {
 		};
 	}
 }
-
 
