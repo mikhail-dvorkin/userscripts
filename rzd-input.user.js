@@ -4,7 +4,7 @@
 // @author        Mikhail Dvorkin, mikhail.dvorkin@gmail.com
 // @namespace     http://dvorkin.me/
 // @website       http://dvorkin.me/
-// @version       1.0.8
+// @version       1.1.0
 // @include       *://pass.rzd.ru/*
 // @include       *://www.pass.rzd.ru/*
 // ==/UserScript==
@@ -19,7 +19,7 @@ I-АК 123456	Пушкин Потомок Потомкович	2017-12-31
 12 3456789	d'Anthès Georges-Charles - 5.2.1812
 */
 
-console.log("RZD input data form, v1.0.8");
+console.log("RZD input data form, v1.1.0");
 var area = document.createElement("textarea");
 area.cols = 100;
 area.rows = 5;
@@ -31,7 +31,6 @@ var testButton = document.createElement("input");
 testButton.type = "button";
 testButton.value = "Пример";
 testButton.onclick = doTest;
-//var parent = document.getElementById("TrainsList");
 var parent = document.getElementsByClassName("crumbs-and-nav-row")[0];
 parent.appendChild(area);
 parent.appendChild(document.createElement("br"));
@@ -68,31 +67,44 @@ function useData() {
 			if (bd[3].length < 2) bd[3] = "0" + bd[3];
 			if (bd[2].length < 2) bd[2] = "0" + bd[2];
 			bd = bd[3] + "." + bd[2] + "." + bd[1];
-		}	
-		document.getElementsByName("lastName")[i].value = ss[2];
-		document.getElementsByName("lastName")[i].click();
-		document.getElementsByName("firstName")[i].value = ss[3];
-		document.getElementsByName("firstName")[i].click();
-		document.getElementsByName("midName")[i].value = ss[4];
-		document.getElementsByName("midName")[i].click();
-		document.getElementsByName("docNumber")[i].value = dn;
-		document.getElementsByName("docNumber")[i].click();
-		document.querySelectorAll("select[testid=gender]")[i].value = gen;
-		document.querySelectorAll("select[testid=gender]")[i].click();
-		document.querySelectorAll("input[testid=birthdate]")[i].value = bd;
-		document.querySelectorAll("input[testid=birthdate]")[i].click();
-		document.querySelectorAll("select[testid=docType]")[i].value = dt;
-		document.querySelectorAll("select[testid=docType]")[i].click();
-		document.querySelectorAll("input[testid=ns-chbox]")[i].checked = true;
-		document.querySelectorAll("input[testid=ns-chbox]")[i].click();
-		document.querySelectorAll("input[testid=dms-chbox]")[i].checked = true;
-		document.querySelectorAll("input[testid=dms-chbox]")[i].click();
+		}
+		rzdSet(document.getElementsByName("lastName")[i], ss[2]);
+		rzdSet(document.getElementsByName("firstName")[i], ss[3]);
+		rzdSet(document.getElementsByName("midName")[i], ss[4]);
+		rzdSet(document.getElementsByName("docNumber")[i], dn);
+		rzdSet(document.querySelectorAll("select[testid=gender]")[i], gen);
+		rzdSet(document.querySelectorAll("input[testid=birthdate]")[i], bd);
+		rzdSet(document.querySelectorAll("select[testid=docType]")[i], dt);
+		rzdSet(document.querySelectorAll("input[testid=ns-chbox]")[i], false);
+		rzdSet(document.querySelectorAll("input[testid=dms-chbox]")[i], false);
 	}
-	document.querySelector("input[testid=gdpr3]").checked = true;
+	rzdSet(document.querySelector("input[testid=gdpr3]"), true);
+}
+
+function rzdSet(elem, newValue) {
+	//elem.value = newValue;
+	if (elem.type == "text") {
+		elem.style.background = "orange";
+		elem.onclick = function() {
+			elem.value = newValue + '$';
+			elem.style.background = "";
+		};
+	} else if (elem.type == "checkbox") {
+		elem.checked = !newValue;
+		elem.click();
+	} else if (elem.type == "select-one") {
+		op = elem.querySelector("option[value='" + newValue + "']");
+		elem.style.background = "orange";
+		op.style.fontSize = "36px";
+		elem.onclick = function() {
+			elem.style.background = "";
+		};
+	}
 }
 
 function doTest() {
-	s = "1234567891	Иванов Иван Иванович	08.09.1999\n";
-	area.value = s + s + s + s;
+	s = "4007456789	Иванов Иван Иванович	18.09.1999\n";
+	area.value = s + s;
 	useData();
 }
+
