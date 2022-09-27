@@ -9,6 +9,7 @@
 // ==/UserScript==
 
 // Usage: run on page like https://ibe.belavia.by/select?journey=MSQBAK20220927&adults=1&children=0&infants=0
+// Check that the sound is playing: for example, search for tickets to Moscow in 2 months from today.
 
 // Userscript usage in general:
 // Add this file to your browser's Extensions page (for example, by drag-and-drop).
