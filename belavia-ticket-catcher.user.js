@@ -24,6 +24,7 @@ function reload() {
 
 function check() {
 	if (document.getElementsByClassName("price-value").length > 0) {
+		console.log("Found!");
 		playSound();
 	} else {
 		console.log("Nothing found.");
