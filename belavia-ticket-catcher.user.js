@@ -23,10 +23,15 @@ function reload() {
 	location.reload();
 }
 
+function playSoundRepeatedly() {
+	playSound();
+	setTimeout(playSoundRepeatedly, 4000);
+}
+
 function check() {
 	if (document.getElementsByClassName("price-value").length > 0) {
 		console.log("Found!");
-		playSound();
+		playSoundRepeatedly();
 	} else {
 		console.log("Nothing found.");
 	}
